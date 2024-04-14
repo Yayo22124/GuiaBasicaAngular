@@ -12,7 +12,7 @@ Angular es un framework que cuenta con su interfaz de línea de comandos muy út
 Para instalar Angular CLI es necesario ejecutar:
 
 ```bash
-  npm install -G @angular/cli
+  npm install -g @angular/cli
 ```
 
 ## Comprobar Instalación
