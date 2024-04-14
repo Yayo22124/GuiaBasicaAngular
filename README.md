@@ -42,7 +42,7 @@ Sí lo comparamos con el famoso React, sabremos que Angular es un framework porq
 
 Angular cuenta con la gran ventaja/característica y muy valorada por las empresas, la cual es que 'obliga' a los desarrolladores a seguir una estructura escalable, robusta y una forma más estandarizada de programar, evitando problemas entre desarrolladores y código de Angular, lo que facilita entender otras aplicaciones y proyectos del mismo.
 
-Una gran característica de Angular es que viene por defecto configurado con **TypeScript**[1] y haciendo mucho uso de conceptos de **POO** (Programación Orientada a Objetos), así como de patrones de diseño como el **Decorador**[2] o el **Singletone**[3], sobre todo los Decoradores sona algo muy común, con los que se les añade funcionalidad a Clases, Objetos, Propiedades y Métodos de nuestro código.
+Una gran característica de Angular es que viene por defecto configurado con **TypeScript**[1] y haciendo mucho uso de conceptos de **POO** (Programación Orientada a Objetos), así como de patrones de diseño como el **Decorador**[2] o el **Singletone**[3], sobre todo los Decoradores son algo muy común, con los que se les añade funcionalidad a Clases, Objetos, Propiedades y Métodos de nuestro código.
 
 Aprender Angular puede parecer muy díficil de aprender, sobre todo porque su curva de aprendizaje es diferente a la de React, Vue o Svelte, las cuales suelen ser mucho más fáciles al inicio, pero incrementa con el tiempo, en cambio Angular, empieza muy extensa, pero rápidamente cae. Por lo que te recomiendo que no te abrumes con el framework y verás que al final sea React, Svelte, Qwik, Astro, Solid, Vue, todos comparten la lógica y sobre todo **JavaScript**.
 
@@ -93,7 +93,8 @@ El parámetro "-o" indica que se abrirá automáticamente en el navegador por de
 
 ## Recursos de Ayuda
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Angular CLI: [Angular CLI Overview and Command Reference](https://angular.io/cli) ejecutando `ng help`.
+- Angular: [Angular CLI Overview and Command Reference](https://angular.io/cli) ejecutando `ng help`.
 
 ## Glosario
 
