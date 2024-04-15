@@ -15,6 +15,7 @@
   - [Puntos a Considerar de Angular](#puntos-a-considerar-de-angular)
 - [Crear un Nuevo Proyecto](#crear-un-nuevo-proyecto)
 - [Ejecutar Proyecto](#ejecutar-proyecto-de-angular)
+- [Estructura de un Proyecto](#estructura-de-un-proyecto)
 - [Glosario](#glosario)
 - [Autor](#autor)
 
