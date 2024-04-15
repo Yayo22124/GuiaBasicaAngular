@@ -6,6 +6,8 @@
 
 </div>
 
+<hr/>
+
 ## Contenido
 
 - [Requisitos](#requisitos-previos)
@@ -13,6 +15,8 @@
 - [Crear un Nuevo Proyecto](#crear-un-nuevo-proyecto)
 - [Ejecutar Proyecto](#ejecutar-proyecto-de-angular)
 - [Glosario](#glosario)
+
+<hr/>
 
 ## Requisitos Previos
 
@@ -32,6 +36,8 @@
     - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss).
     - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig).
 
+<hr/>
+
 ## Introducción a Angular
 
 Angular es **full-framework** desarrollado y mantenido por **Google**, con el podemos crear aplicaciones web e interfaces web robustas de una forma más sencilla, ya que viene por defecto configurado y con varias librerías para todo tipo de fines y usos.
@@ -48,7 +54,11 @@ Aprender Angular puede parecer muy díficil de aprender, sobre todo porque su cu
 
 #### Puntos a Considerar de Angular
 
-Angular antes de la versión 17, venía configurado para ser usado con **módulos**, una forma muy estructurada de crear aplicaciones y de separar nuestros casos de uso, pero desde su versión 15, se implementó el concepto de **Componentes Standalone**[4], separándose de los módulos, y desde la versión 16, se añadió la opción de crear aplicaciones enteras en Standalone, es decir, sin módulos, en esta versión actual (17), es la forma por defecto en la que se crean los proyectos, pero aún se mantiene la compatibilidad con los módulos.
+- **Módulos:** Angular antes de la versión 17, venía configurado para ser usado con **módulos**, una forma muy estructurada de crear aplicaciones y de separar nuestros casos de uso, pero desde su versión 15, se implementó el concepto de **Componentes Standalone**[4], separándose de los módulos, y desde la versión 16, se añadió la opción de crear aplicaciones enteras en Standalone, es decir, sin módulos, en esta versión actual (17), es la forma por defecto en la que se crean los proyectos, pero aún se mantiene la compatibilidad con los módulos.
+- **Componentes**: Angular al igual que muchas librerías y frameworks frontend, permiten la creación y reutilización de Componentes, podemos pensarlos como cada parte que se repite o planea reutilizar más de una vez en nuestra aplicación, incluso el solo separar la lógica en más componentes permite hacer el código más legible.
+- ****
+
+<hr/>
 
 ## Crear un Nuevo Proyecto
 
@@ -72,6 +82,8 @@ ng n -S --style scss --no-ssr NombreProyecto
 
 Sustituyendo "NombreProyecto" por el nombre que se asocie a sus necesidades.
 
+<hr/>
+
 ## Ejecutar Proyecto de Angular
 
 Una vez creado su proyecto, por defecto se instalan dependencias y se generan los archivos en un nuevo directorio/carpeta llamado igual que el nombre que se le indicó al CLI durante su ejecución.
@@ -91,10 +103,14 @@ ng serve -o
 El parámetro "-o" indica que se abrirá automáticamente en el navegador por defecto del sistema operativo.
 
 
+<hr/>
+
 ## Recursos de Ayuda
 
 - Angular CLI: [Angular CLI Overview and Command Reference](https://angular.io/cli) ejecutando `ng help`.
 - Angular: [Angular CLI Overview and Command Reference](https://angular.io/cli) ejecutando `ng help`.
+
+<hr/>
 
 ## Glosario
 
@@ -107,3 +123,14 @@ El parámetro "-o" indica que se abrirá automáticamente en el navegador por de
 | 5.- Angular CLI            | Interfaz de línea de comandos de Angular para administrar, gestionar y manejar nuestros proyectos de Angular, con esta podemos crear proyectos nuevos, crear componentes, directivas, pipes y todo tipo de partes de Angular, así como levantar nuestros proyectos en local.                                                                             
 | 6.- SCCS            | Pre-Procesador de estilos de CSS y una extensión del mismo con el que podemos realizar algunas operaciones más avanzadas como el **cálculo** de medidas, por ejemplo calc(100px - 150px).                                                              
 | 6.- SSR            | Técnica moderna de crear aplicaciones de interfaz web, con las que podemos configurar un servidor el cual proporcione ciertos componentes o partes de nuestra aplicación ya renderizados o taspilados, quitando carga al cliente, mejorando la performance y la experiencia del usuario.                                              
+
+<hr/>
+
+## Autor
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Yayo22124"><img src="https://avatars.githubusercontent.com/Yayo22124" style="border-radius: 100%;" width="100px;" alt="Haziel Ortiz"/><br /><sub><b>Haziel Ortiz</b></sub></a><br /></td>
+  </tbody>
+</table>
