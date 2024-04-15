@@ -12,9 +12,11 @@
 
 - [Requisitos](#requisitos-previos)
 - [Introducción a Angular](#introducción-a-angular)
+  - [Puntos a Considerar de Angular](#puntos-a-considerar-de-angular)
 - [Crear un Nuevo Proyecto](#crear-un-nuevo-proyecto)
 - [Ejecutar Proyecto](#ejecutar-proyecto-de-angular)
 - [Glosario](#glosario)
+- [Autor](#autor)
 
 <hr/>
 
@@ -56,13 +58,16 @@ Aprender Angular puede parecer muy díficil de aprender, sobre todo porque su cu
 
 - **Módulos:** Angular antes de la versión 17, venía configurado para ser usado con **módulos**, una forma muy estructurada de crear aplicaciones y de separar nuestros casos de uso, pero desde su versión 15, se implementó el concepto de **Componentes Standalone**[4], separándose de los módulos, y desde la versión 16, se añadió la opción de crear aplicaciones enteras en Standalone, es decir, sin módulos, en esta versión actual (17), es la forma por defecto en la que se crean los proyectos, pero aún se mantiene la compatibilidad con los módulos.
 - **Componentes**: Angular al igual que muchas librerías y frameworks frontend, permiten la creación y reutilización de Componentes, podemos pensarlos como cada parte que se repite o planea reutilizar más de una vez en nuestra aplicación, incluso el solo separar la lógica en más componentes permite hacer el código más legible.
-- ****
+- **Angular Material:** Es una librería oficial de Google que sigue las buenas prácticas y normativas de **Material Design** con componentes bien estructurados, diseñados, escalables y muy bien implementados para Angular. Para agregarlo al proyecto puedes seguir la siguiente [guía](https://material.angular.io/guide/getting-started).
+- **TailwindCSS:** Framework de CSS la cual incluye una serie de clases preconfiguradas para aplicar estilos a nuestro HTML dentro del propio template, útil para proyectos pequeños y medianos. Para integrarse con Angular visita su [guía oficial](https://tailwindcss.com/docs/guides/angular).
+- **Karma**: Es un framework popular para realizar pruebas y test a aplicaciones de JavaScript, por defecto Angular al crear un proyecto viene configurado para crear archivos llamados `spec` en los que viene una sencilla prueba para cada parte de código generada con el CLI (Puede ser desactivado con `--no-specs` o `-S` en el `ng new`).
+- **RxJs**: Es una popular librería para la **Programación Reactiva**[5], Angular por defecto utiliza bastante sus conceptos y funcionalidad de los **Observables**[6] para mejorar la experiencia de desarrollo, la seguridad y sobre todo la reactividad.
 
 <hr/>
 
 ## Crear un Nuevo Proyecto
 
-Los proyectos de Angular son creados por medio de su herramienta de **Angular CLI**[5], con esta se nos facilita todo el proceso de creación y configuración inicial de Angular, TypeScript y el editor de código.
+Los proyectos de Angular son creados por medio de su herramienta de **Angular CLI**[7], con esta se nos facilita todo el proceso de creación y configuración inicial de Angular, TypeScript y el editor de código.
 
 Angular CLI cuenta con su comando el cual es `ng`, de esta forma accedemos a la funcionalidad y comandos del CLI.
 
@@ -71,8 +76,8 @@ Para crear un proyecto se usa el comando `ng new MiProyecto`, donde "MiProyecto"
 > [!NOTE]  
 > La primera vez que usamos **ng** (Angular CLI), se nos preguntará sí queremos enviar datos de forma anónima a Google para mejorar Angular, por defecto viene marcado que no y solo es pulsar **enter**.
 
-- Elegir un Gestor de Estilos: SASS, SCSS, CSS o LESS (Usaremos **SCSS**[6]).
-- Activar o no SSR (**Server Side Rendering**[7]).
+- Elegir un Gestor de Estilos: SASS, SCSS, CSS o LESS (Usaremos **SCSS**[8]).
+- Activar o no SSR (**Server Side Rendering**[9]).
 
 Mi recomendación es usar el siguiente comando que ya configura los pasos anteriores y lo deja como será usado durante las clases:
 
@@ -81,6 +86,41 @@ ng n -S --style scss --no-ssr NombreProyecto
 ```
 
 Sustituyendo "NombreProyecto" por el nombre que se asocie a sus necesidades.
+
+<hr/>
+
+## Estructura de un Proyecto
+
+Los proyectos tienen una estructura algo más avanzada, extensa y organizada para ser tan solo inicial, puede parecer demasiado pero no es tan díficil de entender cada archivo, en este punto trataré de explicar lo esencial.
+
+Para comenzar, tendremos los típicos archivos de NodeJS:
+
+- package.json: Permite tener un control y descripción del proyecto, sobre todo sí se planea subir como paquete de npm o solo describir el proyecto, así como administrar las dependencias de Desarrollo y Producción junto a sus respectivos scripts del proyecto.
+- package-lock.json: Un archivo que no es recomendable modificar, puesto que es el resultado de cargar el proyecto y puede contener datos que al ser modificados corrompan el proyecto.
+- node_modules: Es un directorio/carpeta que almacena todas las dependencias y código externo que usa nuestro proyecto.
+
+Después tenemos los archivos de TypeScript:
+
+- tsconfig.json: Este archivo contiene la configuración de typescript, cómo donde se devolverá el archivo traspilado o compilado a JavaScript, el modo de typescript y configuraciones generales.
+  -tsconfig.app.json: Este archivo extiende o hereda las propiedades del anterior facilitando su edición para añadir configuraciones como alias paths.
+- tsconfig.spec.ts: Archivo de configuración para los archivos de test de typescript.
+
+Por último tenemos los archivos propios de Angular:
+
+- angular.json: Archivo con la configuración de nuestro proyecto, no es tan común modificarlo, pero contiene características como el archivo de estilos globales, el tipo de aplicación/proyecto, el prefijo de la aplicación (por defecto app), su configuración del build y más.
+- .editorconfig: Es un archivo que permite pasarle ciertas configuraciones a nuestro editor de código para que las tome en cuenta para el proyecto.
+- src: Carpeta principal del código y contenido de la aplicación.
+  - assets: Carpeta de archivos estáticos como imágenes, vídeos, íconos y más.
+  - index.html: Archivo HTML inicial y principal de la aplicación donde se renderiza toda nuestra **SPA**[10] (Single Page Application)
+  - main.ts: Es el archivo donde se construye el bootstrap de nuestra aplicación haciendo uso de app y sobre todo app.config.
+  - styles.scss: Archivo de estilos globales para la aplicación.
+  - favicon.ico: Ícono de Angular por defecto para la aplicación.
+  - app: Módulo o componente de inicio del proyecto, por defecto generado por Angular CLI para cargar la aplicación.
+    - app.component.html: Plantilla HTML del componente, es esta la que se renderizará usando los estilos y contenido del componente.
+    - app.component.scss: Archivo de estilos empaquetados a nivel de componente, es decir, Angular encapsula los estilos de este archivo para solo este componente sin afectar a otros.
+    - app.component.ts: Lógica y contenido del componente, aquí podemos importar y usar librerías haciendo uso de TypeScript para añadir funcionalidad.
+    - app.config.ts: Este archivo contiene configuración de nuestra aplicación cómo los modulos a compartir en la aplicación, etc.. Aquí se puede proveer a los componentes módulos como el HTTPClient.
+    - app.routes.ts: Este archivo contiene las rutas que usa nuestra aplicación, con este archivo podemos generar las rutas, cómo cargar los componentes, usar parámetros de rutas, etc...
 
 <hr/>
 
@@ -102,27 +142,33 @@ ng serve -o
 
 El parámetro "-o" indica que se abrirá automáticamente en el navegador por defecto del sistema operativo.
 
-
 <hr/>
 
 ## Recursos de Ayuda
 
-- Angular CLI: [Angular CLI Overview and Command Reference](https://angular.io/cli) ejecutando `ng help`.
-- Angular: [Angular CLI Overview and Command Reference](https://angular.io/cli) ejecutando `ng help`.
+- Angular CLI: [Angular CLI Overview and Command Reference](https://angular.io/cli) ó ejecutando `ng help`.
+- Angular Documentación:
+  - [En español (limitada)](https://docs.angular.lat/docs).
+  - [En inglés (completa y recomendada)](https://angular.io/docs).
+  - [Versión Nueva y Tutoriales (limitada)](https://angular.dev).
+- RxJs: [Documentación](https://rxjs.dev/guide/overview).
 
 <hr/>
 
 ## Glosario
 
-| Término                    | Definición                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1.- TypeScript             | Es un **superconjunto** de JavaScript con el que se le añaden característica más estrictas como el **tipado** de datos y de **POO**, con lo que permite desarrollar código más seguro de JavaScript, mostrando errores en tiempo de ejecución.                                                                                                                                                                                             |
-| 2.- Decorador              | Es un patrón de diseño el cual permite dar funcionalidad y cambiar las propiedades de nuestro código de una forma más sencilla y reutilizable, esto suele aplicarse con los "**@**", también llamadas **Anotaciones**.                                                                                                                                                                                                                     |
-| 3.- Singletone             | Otro patrón de diseño enfocado en seguridad y control de la información de una aplicación, en Angular se usa en sus **Servicios**, con los que podemos compartir y mantener la misma información en toda nuestra aplicación porque consiste en crear una **única instancia** de nuestra clase a nivel global.                                                                                                                              |
+| Término                    | Definición                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.- TypeScript             | Es un **superconjunto** de JavaScript con el que se le añaden característica más estrictas como el **tipado** de datos y de **POO**, con lo que permite desarrollar código más seguro de JavaScript, mostrando errores en tiempo de ejecución.                                                                                                                                                                                          |
+| 2.- Decorador              | Es un patrón de diseño el cual permite dar funcionalidad y cambiar las propiedades de nuestro código de una forma más sencilla y reutilizable, esto suele aplicarse con los "**@**", también llamadas **Anotaciones**.                                                                                                                                                                                                                  |
+| 3.- Singletone             | Otro patrón de diseño enfocado en seguridad y control de la información de una aplicación, en Angular se usa en sus **Servicios**, con los que podemos compartir y mantener la misma información en toda nuestra aplicación porque consiste en crear una **única instancia** de nuestra clase a nivel global.                                                                                                                           |
 | 3.- Componentes Standalone | Los componentes en general, son partes de nuestra aplicación que se suelen repetir en varias partes o sitios, por lo que es bueno generalizarlos en componentes, volviendo reutilizable su código cómo un Navbar, una Card, un Button, etc... En Angular con módulos, estos están ligados a su propio módulo, pero los Standalone, son componentes que son su propio módulo por debajo y por ello pueden ser globales e independientes. |
-| 5.- Angular CLI            | Interfaz de línea de comandos de Angular para administrar, gestionar y manejar nuestros proyectos de Angular, con esta podemos crear proyectos nuevos, crear componentes, directivas, pipes y todo tipo de partes de Angular, así como levantar nuestros proyectos en local.                                                                             
-| 6.- SCCS            | Pre-Procesador de estilos de CSS y una extensión del mismo con el que podemos realizar algunas operaciones más avanzadas como el **cálculo** de medidas, por ejemplo calc(100px - 150px).                                                              
-| 6.- SSR            | Técnica moderna de crear aplicaciones de interfaz web, con las que podemos configurar un servidor el cual proporcione ciertos componentes o partes de nuestra aplicación ya renderizados o taspilados, quitando carga al cliente, mejorando la performance y la experiencia del usuario.                                              
+| 5.- Programación Reactiva  | Es un paradigma de programación como la POO, pero enfocada en la escucha constante de cambios y la reactividad ante los mismos, se puede implementar con Reactive X y su librería para JavaScript: RxJs o o su nueva alternativa para Angular, NgRx.                                                                                                                                                                                    |
+| 6.- Observables            | Son una característica e implementación del patrón de diseño **Observer**, la cual permite tener un flujo constante de datos y tener clientes observando los cambios del mismo, dando lugar a la programación reactiva ante dichos cambios.                                                                                                                                                                                             |
+| 7.- Angular CLI            | Interfaz de línea de comandos de Angular para administrar, gestionar y manejar nuestros proyectos de Angular, con esta podemos crear proyectos nuevos, crear componentes, directivas, pipes y todo tipo de partes de Angular, así como levantar nuestros proyectos en local.                                                                                                                                                            |
+| 8.- SCCS                   | Pre-Procesador de estilos de CSS y una extensión del mismo con el que podemos realizar algunas operaciones más avanzadas como el **cálculo** de medidas, por ejemplo calc(100px - 150px).                                                                                                                                                                                                                                               |
+| 9.- SSR                    | Técnica moderna de crear aplicaciones de interfaz web, con las que podemos configurar un servidor el cual proporcione ciertos componentes o partes de nuestra aplicación ya renderizados o taspilados, quitando carga al cliente, mejorando la performance y la experiencia del usuario.                                                                                                                                                |
+| 10.- SPA                   | Los frameworks y librerías como Angular, React o Vue, suelen generar y renderizar todo su código en un único archivo HTML (index.html), haciendo que técnicamente sean únicamente una sola página, de ahí el Single Page Application, pero esto puede disimularse renderizando componentes como páginas haciendo uso de módulos o librerías conocidad como Routers, pero no dejan de ser una sola página real.                          |
 
 <hr/>
 
