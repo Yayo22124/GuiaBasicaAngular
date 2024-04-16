@@ -12,7 +12,7 @@
 
 - [Requisitos](#requisitos-previos)
 - [Introducción a Angular](#introducción-a-angular)
-  - [Puntos a Considerar de Angular](#puntos-a-considerar-de-angular)
+- [Puntos a Considerar de Angular](#puntos-a-considerar-de-angular)
 - [Crear un Nuevo Proyecto](#crear-un-nuevo-proyecto)
 - [Ejecutar Proyecto](#ejecutar-proyecto-de-angular)
 - [Estructura de un Proyecto](#estructura-de-un-proyecto)
@@ -125,6 +125,38 @@ Por último tenemos los archivos propios de Angular:
 
 <hr/>
 
+## Estructura de Archivos Recomendada
+
+Los proyectos de cualquier tecnología, suelen dividirse en varios directorios, archivos y módulos separados, esto para mejorar la legibilidad y experiencia de desarrollo, sobre todo a la hora del mantenimiento, ya que en el tener todo el contenido en un solo archivo, es mejor dividirlo y así repartir la carga.
+
+Existen muchas estructuras de archivos para cada tipo de proyecto, sobre todo tomando en cuenta el tamaño del mismo, yo personalmente aprendí una para Angular, la cual hasta la fecha es la que utilizo y se usará en el proyecto, la cual consiste en generar la siguiente estructura dentro de `src/app`.
+
+- **components**: En esta carpeta se almacenan todos nuestros componentes globales (Standalone), que desde Angular 17, todos van ahí.
+- **modules** (Angular de Módulos, no el que usamos): En esta carpeta se alberga a todos nuestros módulos, intentando ser descriptivos de que hace cada uno para separar por casos de uso.
+- **core**: Esta es una carpeta muy importante, en la que ponemos todo el código que queremos compartir a nivel global de nuestra aplicación y generalmente se relaciona más con funcionalidad y extras de la aplicación, la cual contiene:
+  - **constants**: Aquí ponemos todas nuestras constantes como la URL de una API, expresiones regulares, valores generales, etc...
+  - **services**: Cómo su nombre lo indica, aquí colocaremos nuestros **servicios**[11].
+  - **interfaces**: Este directorio contiene las interfaces que usamos para tipar objetos en TypeScript.
+- **pages**: Contiene los componentes que usaremos para renderizar páginas del router.
+
+## Componentes
+
+Para generar un componente en Angular, existen varias formas, pero explicaré las tres principales:
+
+- Angular CLI: Usando esta herramienta con el comando `ng generate component NombreComponente` ó `ng g c NombreComponente`.
+- Manualmente: Consiste en crear los archivos manualmente, obviamente es algo tardado y puede no ser muy eficiente.
+- Angular Schematics: Es una extensión de VSCode, con la que podemos crear componentes usando la barra de comandos de VSCode o pulsando click derecho en el gestor de archivos y en la ruta donde lo necesitamos, yo personalmente no la suelo utilizar.
+
+Una vez sabiendo esas formas, yo recomiendo aprender a utilizar Angular CLI, aunque pueda ser tedioso tener siempre dos terminales, una para el servidor y otra para generar componentes.
+
+Pasando al siguiente punto, generar un componente siguiendo nuestra estructura de archivos, sería algo como lo siguiente:
+
+```bash
+ng g c components/MiComponente
+```
+
+De esta forma le decimos al CLI que genere el componente dentro de **components**.
+
 ## Ejecutar Proyecto de Angular
 
 Una vez creado su proyecto, por defecto se instalan dependencias y se generan los archivos en un nuevo directorio/carpeta llamado igual que el nombre que se le indicó al CLI durante su ejecución.
@@ -156,6 +188,131 @@ El parámetro "-o" indica que se abrirá automáticamente en el navegador por de
 
 <hr/>
 
+## HighCharts
+
+Existen muchas librerias para crear, manipular y mostrar gráficas en JavaScript, como Amcharts, ChartJS, o la misma HighCharts. Para este proyecto es la que se usará, aunque comparten similutedes las demás.
+
+Esta libreria desarrollada por HighSoft, permite mostrar varios tipos de gráficas bastante personalizables y con una buena integración en Angular y TypeScript.
+
+Puedes leer su documentación [aquí](https://www.highcharts.com/docs/index).
+
+Trataré de hacer una pequeña guía para su instalación en Angular:
+
+Lo primero es [instalar](https://www.highcharts.com/download/) la libreria usando nuestro gestor de paquetes, en mi caso npm:
+
+```bash
+npm install highcharts-angular
+npm install highcharts
+```
+
+Una vez instalados estos paquetes, podemos usar Highcharts en algún componente, en mi caso lo haré usando `ng-content` y nuestro componente de ChartCard.
+
+Por ahora solo para mostrar una gráfica básica, primero importaremos en nuestro componente de `ChartCard`, el módulo de Highcharts y su paquete:
+
+
+```typescript
+import * as Highcharts from 'highcharts';
+
+import { Component } from '@angular/core';
+import { HighchartsChartModule } from 'highcharts-angular';
+
+@Component({
+  selector: 'app-chart-card',
+  standalone: true,
+  imports: [HighchartsChartModule],
+  templateUrl: './chart-card.component.html',
+  styleUrl: './chart-card.component.scss'
+})
+export class ChartCardComponent {
+  
+}
+
+```
+
+Lo siguiente es instanciar nuestra gráfica y su configuración:
+```typescript
+import * as Highcharts from 'highcharts';
+
+import { Component } from '@angular/core';
+import { HighchartsChartModule } from 'highcharts-angular';
+
+@Component({
+  selector: 'app-chart-card',
+  standalone: true,
+  imports: [HighchartsChartModule],
+  templateUrl: './chart-card.component.html',
+  styleUrl: './chart-card.component.scss'
+})
+export class ChartCardComponent {
+  // Instanciar nuestra gráfica ###############
+  public miGrafica: typeof Highcharts = Highcharts;
+  public configuracionGrafica: Highcharts.Options = {
+    chart: {
+      type: 'line'
+    },
+    series: [
+      {
+        type: 'line',
+        data: [12,20,50,1]
+      }
+    ]
+  }
+  // Instanciar nuestra gráfica ###############
+}
+
+```
+
+Con esto podemos pasar a mostrar en el template html nuestra gráfica básica usando la Card que teniamos previamente:
+```html
+<div class="w-100">
+  <div class="card">
+    <div class="card-body">
+      <!-- Title -->
+      <h5 class="card-title">Gráfica</h5>
+      <!-- Chart -->
+      <highcharts-chart [Highcharts]="miGrafica" [options]="configuracionGrafica" />
+      <!-- Description -->
+      <p class="card-text">Descripción.</p>
+      <!-- Action -->
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>
+</div>
+
+```
+
+Cómo resultado tendremos lo siguiente:
+
+<div align="center">
+
+  <img src="src/assets/guia/charts.png" style="height: 450px;"/>
+
+</div>
+
+### Guía del día Lunes 15 (Personas que Faltaron)
+
+Durante la sesión se realizo la introducción a Angular 17, conceptos básicos repaso de esta guía y se abordaron algunos conceptos extra, puntos a considerar y se trató de explicar algunas cosas de forma más visual.
+
+Sin embargo el código de este repositorio es lo que se ha realizado hasta el momento que consiste como indicación del profesor Marco, en generar una pequeña interfaz que simule un Dashboard del proyecto iHome, el cuál consiste en una plantilla muy sencilla conformada por:
+
+- Sidebar
+- Header (Breadcrumb)
+- Contenido Principal (Main)
+  - ChartCards
+
+Todo ello componetizado y usando la dependencia de [Angular Bootstrap](https://ng-bootstrap.github.io/#/home).
+
+Para añadir dicha dependencia, se puede utilizar el gestor de Angular CLI: `ng add @ng-bootstrap/ng-bootstrap`.
+
+Les recomiendo estudiar y tratar de ponerse al corriente pues lo siguiente es iniciar con HighCharts.
+
+<div align="center">
+
+  <img src="src/assets/guia/template.png" style="height: 450px;"/>
+
+</div>
+
+
 ## Glosario
 
 | Término                    | Definición                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -170,6 +327,7 @@ El parámetro "-o" indica que se abrirá automáticamente en el navegador por de
 | 8.- SCCS                   | Pre-Procesador de estilos de CSS y una extensión del mismo con el que podemos realizar algunas operaciones más avanzadas como el **cálculo** de medidas, por ejemplo calc(100px - 150px).                                                                                                                                                                                                                                               |
 | 9.- SSR                    | Técnica moderna de crear aplicaciones de interfaz web, con las que podemos configurar un servidor el cual proporcione ciertos componentes o partes de nuestra aplicación ya renderizados o taspilados, quitando carga al cliente, mejorando la performance y la experiencia del usuario.                                                                                                                                                |
 | 10.- SPA                   | Los frameworks y librerías como Angular, React o Vue, suelen generar y renderizar todo su código en un único archivo HTML (index.html), haciendo que técnicamente sean únicamente una sola página, de ahí el Single Page Application, pero esto puede disimularse renderizando componentes como páginas haciendo uso de módulos o librerías conocidad como Routers, pero no dejan de ser una sola página real.                          |
+| 11.- Servicios                   | Son un patrón de diseño muy utilizado tanto en el backend como en el frontend y desarrollo en general, estos permiten almacenar lógica y funcionalidad a travéz de una interfaz bien definida, están diseñados para ser específicos. En Angular se definen como el "Único lugar de la verdad", puesto que estos son singletone y permiten la transmisión de información o alguna funcionalidad de la aplicación.                           |
 
 <hr/>
 
