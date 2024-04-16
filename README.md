@@ -16,7 +16,12 @@
 - [Crear un Nuevo Proyecto](#crear-un-nuevo-proyecto)
 - [Ejecutar Proyecto](#ejecutar-proyecto-de-angular)
 - [Estructura de un Proyecto](#estructura-de-un-proyecto)
+- [Estructura de Archivos Recomendada](#estructura-de-archivos-recomendada)
+- [Componentes](#componentes)
+- [Recursos de Ayuda](#recursos-de-ayuda)
+- [Highcharts](#highcharts)
 - [Glosario](#glosario)
+- [Descripción de lo realizado Lunes](#guía-del-día-lunes-15-personas-que-faltaron)
 - [Autor](#autor)
 
 <hr/>
