@@ -215,60 +215,57 @@ Una vez instalados estos paquetes, podemos usar Highcharts en algún componente,
 
 Por ahora solo para mostrar una gráfica básica, primero importaremos en nuestro componente de `ChartCard`, el módulo de Highcharts y su paquete:
 
-
 ```typescript
-import * as Highcharts from 'highcharts';
+import * as Highcharts from "highcharts";
 
-import { Component } from '@angular/core';
-import { HighchartsChartModule } from 'highcharts-angular';
+import { Component } from "@angular/core";
+import { HighchartsChartModule } from "highcharts-angular";
 
 @Component({
-  selector: 'app-chart-card',
+  selector: "app-chart-card",
   standalone: true,
   imports: [HighchartsChartModule],
-  templateUrl: './chart-card.component.html',
-  styleUrl: './chart-card.component.scss'
+  templateUrl: "./chart-card.component.html",
+  styleUrl: "./chart-card.component.scss",
 })
-export class ChartCardComponent {
-  
-}
-
+export class ChartCardComponent {}
 ```
 
 Lo siguiente es instanciar nuestra gráfica y su configuración:
-```typescript
-import * as Highcharts from 'highcharts';
 
-import { Component } from '@angular/core';
-import { HighchartsChartModule } from 'highcharts-angular';
+```typescript
+import * as Highcharts from "highcharts";
+
+import { Component } from "@angular/core";
+import { HighchartsChartModule } from "highcharts-angular";
 
 @Component({
-  selector: 'app-chart-card',
+  selector: "app-chart-card",
   standalone: true,
   imports: [HighchartsChartModule],
-  templateUrl: './chart-card.component.html',
-  styleUrl: './chart-card.component.scss'
+  templateUrl: "./chart-card.component.html",
+  styleUrl: "./chart-card.component.scss",
 })
 export class ChartCardComponent {
   // Instanciar nuestra gráfica ###############
   public miGrafica: typeof Highcharts = Highcharts;
   public configuracionGrafica: Highcharts.Options = {
     chart: {
-      type: 'line'
+      type: "line",
     },
     series: [
       {
-        type: 'line',
-        data: [12,20,50,1]
-      }
-    ]
-  }
+        type: "line",
+        data: [12, 20, 50, 1],
+      },
+    ],
+  };
   // Instanciar nuestra gráfica ###############
 }
-
 ```
 
 Con esto podemos pasar a mostrar en el template html nuestra gráfica básica usando la Card que teniamos previamente:
+
 ```html
 <div class="w-100">
   <div class="card">
@@ -284,7 +281,6 @@ Con esto podemos pasar a mostrar en el template html nuestra gráfica básica us
     </div>
   </div>
 </div>
-
 ```
 
 Cómo resultado tendremos lo siguiente:
@@ -318,7 +314,6 @@ Les recomiendo estudiar y tratar de ponerse al corriente pues lo siguiente es in
 
 </div>
 
-
 ## Glosario
 
 | Término                    | Definición                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -333,7 +328,7 @@ Les recomiendo estudiar y tratar de ponerse al corriente pues lo siguiente es in
 | 8.- SCCS                   | Pre-Procesador de estilos de CSS y una extensión del mismo con el que podemos realizar algunas operaciones más avanzadas como el **cálculo** de medidas, por ejemplo calc(100px - 150px).                                                                                                                                                                                                                                               |
 | 9.- SSR                    | Técnica moderna de crear aplicaciones de interfaz web, con las que podemos configurar un servidor el cual proporcione ciertos componentes o partes de nuestra aplicación ya renderizados o taspilados, quitando carga al cliente, mejorando la performance y la experiencia del usuario.                                                                                                                                                |
 | 10.- SPA                   | Los frameworks y librerías como Angular, React o Vue, suelen generar y renderizar todo su código en un único archivo HTML (index.html), haciendo que técnicamente sean únicamente una sola página, de ahí el Single Page Application, pero esto puede disimularse renderizando componentes como páginas haciendo uso de módulos o librerías conocidad como Routers, pero no dejan de ser una sola página real.                          |
-| 11.- Servicios                   | Son un patrón de diseño muy utilizado tanto en el backend como en el frontend y desarrollo en general, estos permiten almacenar lógica y funcionalidad a travéz de una interfaz bien definida, están diseñados para ser específicos. En Angular se definen como el "Único lugar de la verdad", puesto que estos son singletone y permiten la transmisión de información o alguna funcionalidad de la aplicación.                           |
+| 11.- Servicios             | Son un patrón de diseño muy utilizado tanto en el backend como en el frontend y desarrollo en general, estos permiten almacenar lógica y funcionalidad a travéz de una interfaz bien definida, están diseñados para ser específicos. En Angular se definen como el "Único lugar de la verdad", puesto que estos son singletone y permiten la transmisión de información o alguna funcionalidad de la aplicación.                        |
 
 <hr/>
 

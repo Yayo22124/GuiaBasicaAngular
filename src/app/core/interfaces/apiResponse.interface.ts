@@ -1,48 +1,95 @@
 export interface iApiResponse {
-  info:    Info;
-  results: Result[];
+  success: boolean;
+  records: Record[];
 }
 
-export interface Info {
-  count: number;
-  pages: number;
-  next:  string;
-  prev:  null;
+export interface Record {
+  _id:            string;
+  arduinoIp:      ArduinoIP;
+  type:           RecordType;
+  name:           RecordName;
+  brand:          Brand;
+  model:          Model;
+  specifications: Specification[];
+  location:       Location;
+  status:         Status;
+  owner:          Owner;
+  readings:       Reading[];
+  actions:        any[];
+  registeredDate: string;
 }
 
-export interface Result {
-  id:       number;
-  name:     string;
-  status:   Status;
-  species:  Species;
-  type:     string;
-  gender:   Gender;
-  origin:   Location;
-  location: Location;
-  image:    string;
-  episode:  string[];
-  url:      string;
-  created:  Date;
+export enum ArduinoIP {
+  The1921680100 = "192.168.0.100",
+  The1921680105 = "192.168.0.105",
+  The1921680119 = "192.168.0.119",
 }
 
-export enum Gender {
-  Female = "Female",
-  Male = "Male",
-  Unknown = "unknown",
+export enum Brand {
+  Genérico = "Genérico",
 }
 
-export interface Location {
-  name: string;
-  url:  string;
+export enum Location {
+  Recámara3 = "Recámara 3",
 }
 
-export enum Species {
-  Alien = "Alien",
-  Human = "Human",
+export enum Model {
+  Dht11 = "DHT11",
+}
+
+export enum RecordName {
+  TemperaturaYHumedad = "Temperatura y Humedad",
+}
+
+export enum Owner {
+  Caorgris = "CAORGRIS",
+  DJnesh = "DJnesh",
+}
+
+export interface Reading {
+  name:            ReadingName;
+  value:           number;
+  measurementUnit: Unit;
+}
+
+export enum Unit {
+  C = "°C",
+  Empty = "%",
+  MA = "mA",
+  V = "V",
+  W = "W",
+}
+
+export enum ReadingName {
+  DetecciónDeHumedad = "Detección de Humedad",
+  DetecciónDeTemperatura = "Detección de Temperatura",
+}
+
+export interface Specification {
+  name:      SpecificationName;
+  minValue?: number;
+  maxValue?: number;
+  unit:      Unit;
+  value?:    number;
+  type?:     SpecificationType;
+}
+
+export enum SpecificationName {
+  ConsumoEléctrico = "Consumo eléctrico",
+  CorrienteDeOperación = "Corriente de operación",
+  RangoDeMediciónDeHúmedad = "Rango de medición de húmedad",
+  RangoDeMediciónDeTemperatura = "Rango de medición de temperatura",
+  VoltageDeOperación = "Voltage de operación",
+}
+
+export enum SpecificationType {
+  Vcd = "VCD",
 }
 
 export enum Status {
-  Alive = "Alive",
-  Dead = "Dead",
-  Unknown = "unknown",
+  Disponible = "Disponible",
+}
+
+export enum RecordType {
+  Sensor = "Sensor",
 }
