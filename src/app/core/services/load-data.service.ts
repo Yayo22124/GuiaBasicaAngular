@@ -22,4 +22,16 @@ export class LoadDataService {
       params: queryParams
     });
   }
+
+  public getLdrData(): Observable<iApiResponse> {
+    const url: string = `${API_URL}/bedrooms/sensor/`;
+
+    const queryParams: HttpParams = new HttpParams()
+      .set('location', 'Recámara 3')
+      .set('sensorName', 'Fotorresistencia');
+
+    return this.http.get<iApiResponse>(url, {
+      params: queryParams
+    });
+  }
 }
