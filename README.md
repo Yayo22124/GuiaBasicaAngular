@@ -49,7 +49,7 @@
 
 ## Introducción a Angular
 
-Angular es **full-framework** desarrollado y mantenido por **Google**, con el podemos crear aplicaciones web e interfaces web robustas de una forma más sencilla, ya que viene por defecto configurado y con varias librerías para todo tipo de fines y usos.
+Angular es un **full-framework** desarrollado y mantenido por **Google**, con el podemos crear aplicaciones web e interfaces web robustas de una forma más sencilla, ya que viene por defecto configurado con varias librerías para todo tipo de fines y usos.
 
 Sí lo comparamos con el famoso React, sabremos que Angular es un framework porque React viene mucho más limitado, siendo su objetivo ser flexible y poder ser usado con cuantas librerías externas necesites, en cambio, Angular ya trae muchas librerías propias y externas incluídas para que puedas desarrollar sin problemas.
 
