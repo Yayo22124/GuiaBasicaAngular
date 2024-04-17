@@ -31,6 +31,7 @@
 - [NodeJS (^v18, recomendado: v20 LTS)](https://nodejs.org/en/download/current).
 - [Angular (v17)](./docs/InstalarAngular.md).
 - [Proyecto iHome API](https://github.com/Yayo22124/api-utxj-home/tree/main).
+- [Proyecto iHome FastAPI Seeder](https://github.com/Yayo22124/iHouseFastApiSeeder.git).
 - [Visual Studio Code](https://code.visualstudio.com/download).
   - Extensiones (Recomendado crear un perfil de vscode especial para Angular):
     - [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template).
